@@ -138,14 +138,14 @@ Description about all config settings:
         # If True, enables more verbose output in the terminal for debugging purposes.
         self.debug = False
 
-Now how to tune your radar with Kalman settings using Kalman_Q, Kalman_R, Frequency of measurement ???
-    - By using Kalman_Test() function we can set our paremeters based on charts. 
-      It is very important to set those values correctly up to your requirements. 
-      If you want to track objects which are moving more chaotic you can set higher values in Kalman_Q.
-      0.1 value is default value which is universal but not the best. higher value of that parameters
-      gives you more repsponsive output from filter which have more interference and vice versa.
-      Setting higher frequency in radar will couse more measurement density but for cost of more interference.
-      Those cheap radars are quiet not precise so it is the best to set that value as low as you can in your project.
+-You can fine-tune the radar behavior using the Kalman_Test() function, which helps visualize the impact of your settings with a chart. This is especially important to match your specific use case.
+    Kalman_Q – This parameter controls the process noise. If you're tracking fast or unpredictable movements (e.g., people walking or running), increasing this value makes the filter more responsive to sudden changes.
+    Default: 0.1 – a good universal value, but not optimal for all scenarios.
+    Higher values → more responsive but noisier output.
+    Lower values → smoother but slower response.
+    Kalman_R – This defines the measurement noise. You can increase it if your radar gives very noisy readings, to make the filter rely more on predictions.
+    Measurement frequency – Setting a higher frequency (i.e., faster sampling) increases the number of measurements per second. This gives more data but can also introduce more noise and interference.
+    Since these budget radars are not highly precise, it's often better to use the lowest frequency that still meets your requirements.
       
       For that is usefull Kalman_Test()
       Example of using that function:
@@ -161,6 +161,7 @@ Now how to tune your radar with Kalman settings using Kalman_Q, Kalman_R, Freque
   -Chart example:
   
   ![Chart_Example](Test_Charts/Test1.png)
+
 
               
               
