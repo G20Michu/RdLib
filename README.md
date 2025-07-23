@@ -92,7 +92,7 @@ Example:
       #Example of Entry Configuration
       config.set(Kalman_Save_csv=False)
       config.set(Kalman=True)
-      config.set(distance_units="cm")
+      config.set(distance_units="cm") 
       rd = Rd()
 
       print(rd.get_angle())
@@ -101,4 +101,57 @@ Example:
       print(rd.get_distance())
       print(rd.Kalman_Test(100,1,5,"Test2","Test2"))
       print(rd.Calibrate_Kalman())
+
+Description about all config settings:
+
+        # If False, the Kalman filter is disabled in all types of measurements.
+        # If True, the Kalman filter is enabled in all types of measurements.
+        self.Kalman = False
+
+        # Path where graphs from the Kalman test function will be saved.
+        self.Kalman_Chart_Path = '~/Documents/Kalman_Test'
+
+        # If False, the program will not save measurements to a CSV file at the path above.
+        self.Kalman_Save_csv = False
+
+        # Q matrix for the Kalman filter – adjusts filter responsiveness.
+        self.Kalman_Q = np.diag([0.1, 0.1, 0.1, 0.1])
+
+        # R matrix for the Kalman filter – represents measurement noise; higher values mean more trust in predictions than measurements.
+        self.Kalman_R = np.diag([50, 50])
+
+        # Path to the Raspberry Pi serial port.
+        self.Serial_Port = '/dev/ttyS0'
+
+        # Baud rate for communication with Rd03D and HLK-LD2450 radars.
+        self.Serial_Speed = '256000'
+
+        # Communication type: "Serial" or "Gpio" GPIO is not supported in that version
+        self.ctype = "Serial"
+
+        # Detection mode: 'S' for single target, 'M' for multiple targets. Multiple targets are not supported in that version
+        self.Detection_Mode = 'S' 
+
+        # Distance units: "in", "ft", "m", or "cm"
+        self.distance_units = "m"
+
+        # If True, enables more verbose output in the terminal for debugging purposes.
+        self.debug = False
+
+Now how to tune your radar with Kalman settings using Kalman_Q, Kalman_R, Frequency of measurement ???
+    - By using Kalman_Test() function we can set our paremeters based on charts. 
+      It is very important to set those values correctly up to your requirements. 
+      If you want to track objects which are moving more chaotic you can set higher values in Kalman_Q.
+      0.1 value is default value which is universal but not the best. higher value of that parameters
+      gives you more repsponsive output from filter which have more interference and vice versa.
+      For that is usefull Kalman_Test()
+      Example of using that function:
       
+              from RdLib.Rd import Rd 
+              from RdLib.config import config
+              import numpy as np
+              config.set(Kalman=True)
+              self.Kalman_Chart_Path = 'YourPath' it will be easier if it is a folder only for measurements
+              
+              
+              
