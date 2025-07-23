@@ -144,6 +144,9 @@ Now how to tune your radar with Kalman settings using Kalman_Q, Kalman_R, Freque
       If you want to track objects which are moving more chaotic you can set higher values in Kalman_Q.
       0.1 value is default value which is universal but not the best. higher value of that parameters
       gives you more repsponsive output from filter which have more interference and vice versa.
+      Setting higher frequency in radar will couse more measurement density but for cost of more interference.
+      Those cheap radars are quiet not precise so it is the best to set that value as low as you can in your project.
+      
       For that is usefull Kalman_Test()
       Example of using that function:
       
@@ -153,5 +156,9 @@ Now how to tune your radar with Kalman settings using Kalman_Q, Kalman_R, Freque
               config.set(Kalman=True)
               self.Kalman_Chart_Path = 'YourPath' it will be easier if it is a folder only for measurements
               
+              #rd.Kalman_Test(true_lenght,measure_frequency,quentity_measure,chart_comment,file_name)
+              rd.Kalman_Test(100,1,5,"Test2","Test2")
+              
+
               
               
