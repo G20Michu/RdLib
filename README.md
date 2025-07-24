@@ -1,4 +1,4 @@
-# RdLib Library for Rd03d and HLK-LD2450 for raspberrypi
+# Python RdLib Library for Rd03d and HLK-LD2450 for raspberrypi
 
 For now library is using only serial communication with these radars. 
 Might be necessary to set temporarily permission to the serial port:
