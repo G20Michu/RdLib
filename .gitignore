@@ -1,1 +1,4 @@
 test.sh
+build/
+bdist.linux-aarch64/
+RdLib.egg-info/
